@@ -18,14 +18,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/webhook", async (req, res) => {
     try {
-      const data = insertWorkflowOutputSchema.parse({
-        executionId: req.body.executionId || req.body.execution_id || `exec-${Date.now()}`,
-        status: req.body.status || 'success',
-        data: req.body.data || req.body,
-        timestamp: req.body.timestamp ? new Date(req.body.timestamp) : new Date(),
-      });
+      const payload = {
+        executionId: req.body.executionId || req.body.execution_id,
+        status: req.body.status,
+        data: req.body.data,
+        timestamp: req.body.timestamp ? new Date(req.body.timestamp) : undefined,
+      };
 
-      const output = await storage.addOutput(data);
+      const validatedData = insertWorkflowOutputSchema.parse(payload);
+
+      const dataToStore = {
+        ...validatedData,
+        executionId: validatedData.executionId || `exec-${Date.now()}`,
+        timestamp: validatedData.timestamp || new Date(),
+      };
+
+      const output = await storage.addOutput(dataToStore);
 
       wss.clients.forEach((client) => {
         if (client.readyState === WebSocket.OPEN) {

@@ -12,6 +12,9 @@ export const workflowOutputs = pgTable("workflow_outputs", {
 
 export const insertWorkflowOutputSchema = createInsertSchema(workflowOutputs).omit({
   id: true,
+}).extend({
+  executionId: z.string().optional(),
+  timestamp: z.date().optional(),
 });
 
 export type InsertWorkflowOutput = z.infer<typeof insertWorkflowOutputSchema>;
