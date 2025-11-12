@@ -1,0 +1,93 @@
+2025-11-12T03:41:00.429Z	Initializing build environment...
+2025-11-12T03:41:02.309Z	Success: Finished initializing build environment
+2025-11-12T03:41:02.737Z	Cloning repository...
+2025-11-12T03:41:03.663Z	Restoring from dependencies cache
+2025-11-12T03:41:03.665Z	Restoring from build output cache
+2025-11-12T03:41:03.668Z	Detected the following tools from environment: npm@10.9.2, nodejs@22.16.0
+2025-11-12T03:41:03.951Z	Installing project dependencies: npm clean-install --progress=false
+2025-11-12T03:41:00.429Z	Initializing build environment...
+2025-11-12T03:41:02.309Z	Success: Finished initializing build environment
+2025-11-12T03:41:02.737Z	Cloning repository...
+2025-11-12T03:41:03.663Z	Restoring from dependencies cache
+2025-11-12T03:41:03.665Z	Restoring from build output cache
+2025-11-12T03:41:03.668Z	Detected the following tools from environment: npm@10.9.2, nodejs@22.16.0
+2025-11-12T03:41:03.951Z	Installing project dependencies: npm clean-install --progress=false
+2025-11-12T03:41:10.875Z	npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+2025-11-12T03:41:10.902Z	npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+2025-11-12T03:41:16.566Z	
+2025-11-12T03:41:16.566Z	added 522 packages, and audited 523 packages in 12s
+2025-11-12T03:41:16.567Z	
+2025-11-12T03:41:16.567Z	74 packages are looking for funding
+2025-11-12T03:41:16.567Z	  run `npm fund` for details
+2025-11-12T03:41:16.601Z	
+2025-11-12T03:41:16.602Z	8 vulnerabilities (3 low, 5 moderate)
+2025-11-12T03:41:16.602Z	
+2025-11-12T03:41:16.602Z	To address issues that do not require attention, run:
+2025-11-12T03:41:16.602Z	  npm audit fix
+2025-11-12T03:41:16.602Z	
+2025-11-12T03:41:16.603Z	To address all issues (including breaking changes), run:
+2025-11-12T03:41:16.603Z	  npm audit fix --force
+2025-11-12T03:41:16.603Z	
+2025-11-12T03:41:16.603Z	Run `npm audit` for details.
+2025-11-12T03:41:16.832Z	Executing user build command: npm run build
+2025-11-12T03:41:22.035Z	
+2025-11-12T03:41:22.036Z	> rest-express@1.0.0 build
+2025-11-12T03:41:22.036Z	> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+2025-11-12T03:41:22.036Z	
+2025-11-12T03:41:22.492Z	vite v5.4.20 building for production...
+2025-11-12T03:41:22.544Z	transforming...
+2025-11-12T03:41:23.608Z	
+2025-11-12T03:41:23.609Z	A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+2025-11-12T03:41:26.272Z	✓ 1971 modules transformed.
+2025-11-12T03:41:26.517Z	rendering chunks...
+2025-11-12T03:41:26.529Z	computing gzip size...
+2025-11-12T03:41:26.272Z	✓ 1971 modules transformed.
+2025-11-12T03:41:26.517Z	rendering chunks...
+2025-11-12T03:41:26.529Z	computing gzip size...
+2025-11-12T03:41:32.145Z	../dist/public/index.html                   2.59 kB │ gzip:  0.95 kB
+2025-11-12T03:41:32.146Z	../dist/public/assets/index-kKxK7kli.css   73.48 kB │ gzip: 11.83 kB
+2025-11-12T03:41:32.146Z	../dist/public/assets/index-C1-cFiaB.js   305.03 kB │ gzip: 97.43 kB
+2025-11-12T03:41:32.146Z	✓ built in 9.63s
+2025-11-12T03:41:32.194Z	
+2025-11-12T03:41:32.195Z	  dist/index.js  7.9kb
+2025-11-12T03:41:32.195Z	
+2025-11-12T03:41:32.195Z	⚡ Done in 4ms
+2025-11-12T03:41:32.203Z	Success: Build command completed
+2025-11-12T03:41:32.354Z	Executing user deploy command: npx wrangler deploy
+2025-11-12T03:41:33.712Z	
+2025-11-12T03:41:33.713Z	 ⛅️ wrangler 4.47.0
+2025-11-12T03:41:33.713Z	───────────────────
+2025-11-12T03:41:33.791Z	▲ [WARNING] Failed to match Worker name. Your config file is using the Worker name "n8n-dashboard", but the CI system expected "interview". Overriding using the CI provided Worker name. Workers Builds connected builds will attempt to open a pull request to resolve this config name mismatch.
+2025-11-12T03:41:33.792Z	
+2025-11-12T03:41:33.792Z	
+2025-11-12T03:41:35.929Z	🌀 Building list of assets...
+2025-11-12T03:41:35.930Z	✨ Read 5 files from the assets directory /opt/buildhome/repo/dist/public
+2025-11-12T03:41:35.937Z	🌀 Starting asset upload...
+2025-11-12T03:41:38.871Z	🌀 Found 4 new or modified static assets to upload. Proceeding with upload...
+2025-11-12T03:41:38.871Z	+ /favicon.png
+2025-11-12T03:41:38.871Z	+ /assets/index-C1-cFiaB.js
+2025-11-12T03:41:38.871Z	+ /index.html
+2025-11-12T03:41:38.871Z	+ /assets/index-kKxK7kli.css
+2025-11-12T03:41:40.041Z	Uploaded 1 of 4 assets
+2025-11-12T03:41:40.051Z	Uploaded 2 of 4 assets
+2025-11-12T03:41:40.713Z	Uploaded 4 of 4 assets
+2025-11-12T03:41:40.716Z	✨ Success! Uploaded 4 files (1.84 sec)
+2025-11-12T03:41:40.716Z	
+2025-11-12T03:41:40.719Z	Total Upload: 128.95 KiB / gzip: 21.71 KiB
+2025-11-12T03:41:44.104Z	Worker Startup Time: 1 ms
+2025-11-12T03:41:44.106Z	Your Worker has access to the following bindings:
+2025-11-12T03:41:44.106Z	Binding                                     Resource            
+2025-11-12T03:41:44.106Z	env.WORKFLOW_STORAGE (WorkflowStorage)      Durable Object      
+2025-11-12T03:41:44.106Z	env.ASSETS                                  Assets              
+2025-11-12T03:41:44.106Z	
+2025-11-12T03:41:44.107Z	Uploaded interview (8.82 sec)
+2025-11-12T03:41:45.543Z	Deployed interview triggers (1.44 sec)
+2025-11-12T03:41:45.544Z	  https://interview.sureshkiran-nz-fe9.workers.dev
+2025-11-12T03:41:45.544Z	Current Version ID: 61843a96-d6f1-4c29-a864-965a2df44b37
+2025-11-12T03:41:45.546Z	
+2025-11-12T03:41:45.546Z	Cloudflare collects anonymous telemetry about your usage of Wrangler. Learn more at https://github.com/cloudflare/workers-sdk/tree/main/packages/wrangler/telemetry.md
+2025-11-12T03:41:45.617Z	Success: Deploy command completed
+2025-11-12T03:41:45.619Z	Uploading to dependency cache
+2025-11-12T03:41:45.624Z	Skipping build output cache as it's not supported for your project
+2025-11-12T03:41:49.504Z	Success: Dependencies uploaded to build cache.
+2025-11-12T03:41:49.704Z	✨ Success! Build completed.
