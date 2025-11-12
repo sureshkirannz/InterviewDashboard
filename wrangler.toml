@@ -1,4 +1,4 @@
-name = "n8n-dashboard"
+name = "interview1"
 main = "worker/index.ts"
 compatibility_date = "2024-11-12"
 
