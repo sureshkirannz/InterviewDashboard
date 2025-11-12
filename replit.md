@@ -42,27 +42,36 @@ Preferred communication style: Simple, everyday language.
 
 ### Backend Architecture
 
+**Deployment Platform:**
+- Cloudflare Workers for serverless edge computing
+- Cloudflare Workers Sites for static asset serving
+- Cloudflare Durable Objects for stateful storage and WebSocket connections
+
 **Server Framework:**
-- Express.js for HTTP server and API routing
-- Node.js runtime with ES modules
+- Cloudflare Workers runtime (not Node.js)
+- @cloudflare/kv-asset-handler for serving static frontend files
+- TypeScript with ES modules
 
 **Real-Time Communication:**
-- WebSocket Server (ws library) for bidirectional real-time updates
-- Integrated with HTTP server for shared port usage
+- WebSocket support via Durable Objects
+- Each Durable Object maintains active WebSocket sessions
+- Broadcasts real-time updates to all connected clients
 
 **API Design:**
-- RESTful endpoints for initial data fetching (`GET /api/outputs`)
+- RESTful endpoints in Durable Object (`GET /api/outputs`)
 - Webhook endpoint for n8n integration (`POST /api/webhook`)
-- WebSocket events for pushing new outputs to connected clients
+- WebSocket endpoint (`/ws`) for real-time client connections
+- Static assets served via Workers Sites from `/dist/public`
 
 **Data Validation:**
 - Zod schema validation for incoming webhook data
 - Type-safe data structures shared between client and server
 
 **Key Design Decisions:**
-- **Problem:** Need to receive data from external n8n workflows
-- **Solution:** Webhook endpoint that validates and broadcasts data
-- **Rationale:** Webhooks provide a standard integration pattern for n8n while validation ensures data integrity
+- **Problem:** Need to receive data from external n8n workflows and support WebSockets
+- **Solution:** Cloudflare Workers with Durable Objects for stateful WebSocket handling
+- **Rationale:** Durable Objects provide single-instance consistency for WebSocket broadcasting while Workers provide global edge distribution
+- **Migration Note:** Changed from `ASSETS` Fetcher to `__STATIC_CONTENT` KV namespace with `getAssetFromKV` for Workers Sites compatibility
 
 ### Data Storage
 
@@ -119,6 +128,13 @@ Preferred communication style: Simple, everyday language.
 - **PostgreSQL:** Ready for activation when persistent storage is needed
 
 ## Recent Changes
+
+**November 12, 2025 - Cloudflare Workers Deployment Fixed**
+- ✅ Fixed Workers Sites static asset serving by migrating from `env.ASSETS` to `@cloudflare/kv-asset-handler`
+- ✅ Properly configured `__STATIC_CONTENT` KV namespace binding for Workers Sites
+- ✅ Added SPA fallback routing (serves index.html for non-asset routes)
+- ✅ Updated wrangler.toml to use `new_sqlite_classes` migration for free tier Durable Objects compatibility
+- ✅ Resolved "Worker threw exception" error that was preventing the application from loading
 
 **November 12, 2025 - MVP Complete**
 - ✅ Implemented complete real-time dashboard with beautiful UI

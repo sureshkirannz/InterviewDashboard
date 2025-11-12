@@ -1,0 +1,89 @@
+2025-11-12T03:14:02.396Z	Initializing build environment...
+2025-11-12T03:14:04.560Z	Success: Finished initializing build environment
+2025-11-12T03:14:05.167Z	Cloning repository...
+2025-11-12T03:14:06.150Z	Restoring from dependencies cache
+2025-11-12T03:14:06.153Z	Restoring from build output cache
+2025-11-12T03:14:06.158Z	Detected the following tools from environment: npm@10.9.2, nodejs@22.16.0
+2025-11-12T03:14:06.450Z	Installing project dependencies: npm clean-install --progress=false
+2025-11-12T03:14:14.116Z	npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+2025-11-12T03:14:14.179Z	npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+2025-11-12T03:14:28.806Z	
+2025-11-12T03:14:28.806Z	added 522 packages, and audited 523 packages in 21s
+2025-11-12T03:14:28.807Z	
+2025-11-12T03:14:28.807Z	74 packages are looking for funding
+2025-11-12T03:14:28.807Z	  run `npm fund` for details
+2025-11-12T03:14:28.834Z	
+2025-11-12T03:14:28.834Z	8 vulnerabilities (3 low, 5 moderate)
+2025-11-12T03:14:28.835Z	
+2025-11-12T03:14:28.835Z	To address issues that do not require attention, run:
+2025-11-12T03:14:28.835Z	  npm audit fix
+2025-11-12T03:14:28.836Z	
+2025-11-12T03:14:28.839Z	To address all issues (including breaking changes), run:
+2025-11-12T03:14:28.839Z	  npm audit fix --force
+2025-11-12T03:14:28.840Z	
+2025-11-12T03:14:28.840Z	Run `npm audit` for details.
+2025-11-12T03:14:29.063Z	Executing user build command: npm run build
+2025-11-12T03:14:29.583Z	
+2025-11-12T03:14:29.583Z	> rest-express@1.0.0 build
+2025-11-12T03:14:29.583Z	> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+2025-11-12T03:14:29.583Z	
+2025-11-12T03:14:37.024Z	vite v5.4.20 building for production...
+2025-11-12T03:14:37.153Z	transforming...
+2025-11-12T03:14:38.653Z	
+2025-11-12T03:14:38.655Z	A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+2025-11-12T03:14:42.125Z	✓ 1971 modules transformed.
+2025-11-12T03:14:42.418Z	rendering chunks...
+2025-11-12T03:14:42.427Z	computing gzip size...
+2025-11-12T03:14:42.477Z	../dist/public/index.html                   2.59 kB │ gzip:  0.95 kB
+2025-11-12T03:14:42.478Z	../dist/public/assets/index-kKxK7kli.css   73.48 kB │ gzip: 11.83 kB
+2025-11-12T03:14:42.478Z	../dist/public/assets/index-C1-cFiaB.js   305.03 kB │ gzip: 97.43 kB
+2025-11-12T03:14:42.478Z	✓ built in 5.41s
+2025-11-12T03:14:42.545Z	
+2025-11-12T03:14:42.546Z	  dist/index.js  7.8kb
+2025-11-12T03:14:42.546Z	
+2025-11-12T03:14:42.546Z	⚡ Done in 5ms
+2025-11-12T03:14:42.557Z	Success: Build command completed
+2025-11-12T03:14:42.665Z	Executing user deploy command: npx wrangler deploy
+2025-11-12T03:14:45.566Z	
+2025-11-12T03:14:45.566Z	 ⛅️ wrangler 4.47.0
+2025-11-12T03:14:45.566Z	───────────────────
+2025-11-12T03:14:45.949Z	▲ [WARNING] Failed to match Worker name. Your config file is using the Worker name "n8n-dashboard", but the CI system expected "interview". Overriding using the CI provided Worker name. Workers Builds connected builds will attempt to open a pull request to resolve this config name mismatch.
+2025-11-12T03:14:45.949Z	
+2025-11-12T03:14:45.951Z	
+2025-11-12T03:14:48.069Z	🌀 Created namespace for Workers Site "__interview-workers_sites_assets"
+2025-11-12T03:14:48.069Z	Fetching list of already uploaded assets...
+2025-11-12T03:14:48.315Z	Building list of assets to upload...
+2025-11-12T03:14:48.320Z	 + assets/index-C1-cFiaB.601fafa784.js (uploading new version of assets/index-C1-cFiaB.js)
+2025-11-12T03:14:48.321Z	 + assets/index-kKxK7kli.d3c7c7fd2e.css (uploading new version of assets/index-kKxK7kli.css)
+2025-11-12T03:14:48.322Z	 + favicon.b61c07068c.png (uploading new version of favicon.png)
+2025-11-12T03:14:48.323Z	 + index.0e353a1aae.html (uploading new version of index.html)
+2025-11-12T03:14:48.324Z	Uploading 4 new assets...
+2025-11-12T03:14:49.049Z	Uploaded 100% [4 out of 4]
+2025-11-12T03:14:49.050Z	↗️  Done syncing assets
+2025-11-12T03:14:49.060Z	Total Upload: 128.83 KiB / gzip: 21.75 KiB
+2025-11-12T03:14:50.757Z	Worker Startup Time: 1 ms
+2025-11-12T03:14:50.761Z	Your Worker has access to the following bindings:
+2025-11-12T03:14:50.761Z	Binding                                     Resource            
+2025-11-12T03:14:50.761Z	env.WORKFLOW_STORAGE (WorkflowStorage)      Durable Object      
+2025-11-12T03:14:50.761Z	
+2025-11-12T03:14:50.764Z	Uploaded interview (4.16 sec)
+2025-11-12T03:14:51.427Z	▲ [WARNING] Because 'workers_dev' is not in your Wrangler file, it will be enabled for this deployment by default.
+2025-11-12T03:14:51.428Z	
+2025-11-12T03:14:51.428Z	  To override this setting, you can disable workers.dev by explicitly setting 'workers_dev = false' in your Wrangler file.
+2025-11-12T03:14:51.428Z	
+2025-11-12T03:14:51.428Z	
+2025-11-12T03:14:51.429Z	▲ [WARNING] Because your 'workers.dev' route is enabled and your 'preview_urls' setting is not in your Wrangler file, Preview URLs will be enabled for this deployment by default.
+2025-11-12T03:14:51.429Z	
+2025-11-12T03:14:51.429Z	  To override this setting, you can disable Preview URLs by explicitly setting 'preview_urls = false' in your Wrangler file.
+2025-11-12T03:14:51.429Z	
+2025-11-12T03:14:51.429Z	
+2025-11-12T03:14:51.430Z	Deployed interview triggers (0.67 sec)
+2025-11-12T03:14:51.430Z	  https://interview.sureshkiran-nz-fe9.workers.dev
+2025-11-12T03:14:51.430Z	Current Version ID: 03323783-3025-45f7-afb4-2a29b9adf37d
+2025-11-12T03:14:51.434Z	
+2025-11-12T03:14:51.435Z	Cloudflare collects anonymous telemetry about your usage of Wrangler. Learn more at https://github.com/cloudflare/workers-sdk/tree/main/packages/wrangler/telemetry.md
+2025-11-12T03:14:51.518Z	Success: Deploy command completed
+2025-11-12T03:14:51.521Z	Uploading to dependency cache
+2025-11-12T03:14:51.527Z	Skipping build output cache as it's not supported for your project
+2025-11-12T03:14:59.057Z	Success: Dependencies uploaded to build cache.
+2025-11-12T03:14:59.189Z	✨ Success! Build completed.

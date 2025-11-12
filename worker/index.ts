@@ -1,14 +1,15 @@
 import { WorkflowStorage } from "./storage-durable-object";
+import { getAssetFromKV } from "@cloudflare/kv-asset-handler";
 
 export { WorkflowStorage };
 
 export interface Env {
   WORKFLOW_STORAGE: DurableObjectNamespace;
-  ASSETS: Fetcher;
+  __STATIC_CONTENT: KVNamespace;
 }
 
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
     if (url.pathname.startsWith("/api/")) {
@@ -35,6 +36,34 @@ export default {
       return stub.fetch(request);
     }
 
-    return env.ASSETS.fetch(request);
+    try {
+      return await getAssetFromKV(
+        {
+          request,
+          waitUntil: ctx.waitUntil.bind(ctx),
+        },
+        {
+          ASSET_NAMESPACE: env.__STATIC_CONTENT,
+          ASSET_MANIFEST: {},
+        }
+      );
+    } catch (e) {
+      const pathname = url.pathname;
+      if (!pathname.includes('.')) {
+        try {
+          return await getAssetFromKV(
+            {
+              request: new Request(`${url.origin}/index.html`, request),
+              waitUntil: ctx.waitUntil.bind(ctx),
+            },
+            {
+              ASSET_NAMESPACE: env.__STATIC_CONTENT,
+              ASSET_MANIFEST: {},
+            }
+          );
+        } catch (e) {}
+      }
+      return new Response("Not Found", { status: 404 });
+    }
   },
 };
