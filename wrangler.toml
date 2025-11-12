@@ -16,5 +16,7 @@ class_name = "WorkflowStorage"
 tag = "v1"
 new_sqlite_classes = ["WorkflowStorage"]
 
-[site]
-bucket = "./dist/public"
+# Modern assets configuration (replaces legacy [site])
+[assets]
+directory = "./dist/public"
+binding = "ASSETS"

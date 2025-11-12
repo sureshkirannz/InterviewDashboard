@@ -1,11 +1,10 @@
 import { WorkflowStorage } from "./storage-durable-object";
-import { getAssetFromKV } from "@cloudflare/kv-asset-handler";
 
 export { WorkflowStorage };
 
 export interface Env {
   WORKFLOW_STORAGE: DurableObjectNamespace;
-  __STATIC_CONTENT: KVNamespace;
+  ASSETS: Fetcher;
 }
 
 export default {
@@ -37,30 +36,12 @@ export default {
     }
 
     try {
-      return await getAssetFromKV(
-        {
-          request,
-          waitUntil: ctx.waitUntil.bind(ctx),
-        },
-        {
-          ASSET_NAMESPACE: env.__STATIC_CONTENT,
-          ASSET_MANIFEST: {},
-        }
-      );
+      return await env.ASSETS.fetch(request);
     } catch (e) {
       const pathname = url.pathname;
       if (!pathname.includes('.')) {
         try {
-          return await getAssetFromKV(
-            {
-              request: new Request(`${url.origin}/index.html`, request),
-              waitUntil: ctx.waitUntil.bind(ctx),
-            },
-            {
-              ASSET_NAMESPACE: env.__STATIC_CONTENT,
-              ASSET_MANIFEST: {},
-            }
-          );
+          return await env.ASSETS.fetch(new Request(`${url.origin}/index.html`, request));
         } catch (e) {}
       }
       return new Response("Not Found", { status: 404 });
