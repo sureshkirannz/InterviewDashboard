@@ -19,6 +19,7 @@ export function useWebSocket(options: UseWebSocketOptions = {}) {
   const wsRef = useRef<WebSocket | null>(null);
   const reconnectAttemptsRef = useRef(0);
   const reconnectTimeoutRef = useRef<NodeJS.Timeout>();
+  const pingIntervalRef = useRef<NodeJS.Timeout>();
 
   const connect = useCallback(() => {
     if (wsRef.current?.readyState === WebSocket.OPEN) {
@@ -34,6 +35,13 @@ export function useWebSocket(options: UseWebSocketOptions = {}) {
       ws.onopen = () => {
         setStatus('connected');
         reconnectAttemptsRef.current = 0;
+        
+        // Send a heartbeat message every 25 seconds to keep connection alive
+        pingIntervalRef.current = setInterval(() => {
+          if (ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({ type: 'ping' }));
+          }
+        }, 25000);
       };
 
       ws.onmessage = (event) => {
@@ -52,6 +60,11 @@ export function useWebSocket(options: UseWebSocketOptions = {}) {
       ws.onclose = () => {
         setStatus('disconnected');
         wsRef.current = null;
+        
+        // Clear ping interval on close
+        if (pingIntervalRef.current) {
+          clearInterval(pingIntervalRef.current);
+        }
 
         if (reconnectAttemptsRef.current < maxReconnectAttempts) {
           reconnectAttemptsRef.current++;
@@ -73,6 +86,9 @@ export function useWebSocket(options: UseWebSocketOptions = {}) {
     return () => {
       if (reconnectTimeoutRef.current) {
         clearTimeout(reconnectTimeoutRef.current);
+      }
+      if (pingIntervalRef.current) {
+        clearInterval(pingIntervalRef.current);
       }
       if (wsRef.current) {
         wsRef.current.close();
