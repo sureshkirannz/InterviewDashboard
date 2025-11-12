@@ -1,0 +1,86 @@
+2025-11-12T03:03:06.703Z	Initializing build environment...
+2025-11-12T03:03:06.703Z	Initializing build environment...
+2025-11-12T03:03:09.409Z	Success: Finished initializing build environment
+2025-11-12T03:03:09.966Z	Cloning repository...
+2025-11-12T03:03:11.025Z	Detected the following tools from environment: npm@10.9.2, nodejs@22.16.0
+2025-11-12T03:03:11.027Z	Restoring from dependencies cache
+2025-11-12T03:03:11.029Z	Restoring from build output cache
+2025-11-12T03:03:11.443Z	Installing project dependencies: npm clean-install --progress=false
+2025-11-12T03:03:18.287Z	npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+2025-11-12T03:03:18.325Z	npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+2025-11-12T03:03:25.284Z	
+2025-11-12T03:03:25.284Z	added 522 packages, and audited 523 packages in 13s
+2025-11-12T03:03:25.284Z	
+2025-11-12T03:03:25.284Z	74 packages are looking for funding
+2025-11-12T03:03:25.284Z	  run `npm fund` for details
+2025-11-12T03:03:25.312Z	
+2025-11-12T03:03:25.313Z	8 vulnerabilities (3 low, 5 moderate)
+2025-11-12T03:03:25.313Z	
+2025-11-12T03:03:25.313Z	To address issues that do not require attention, run:
+2025-11-12T03:03:25.313Z	  npm audit fix
+2025-11-12T03:03:25.313Z	
+2025-11-12T03:03:25.313Z	To address all issues (including breaking changes), run:
+2025-11-12T03:03:25.313Z	  npm audit fix --force
+2025-11-12T03:03:25.313Z	
+2025-11-12T03:03:25.313Z	Run `npm audit` for details.
+2025-11-12T03:03:25.664Z	Executing user build command: npm run build
+2025-11-12T03:03:30.418Z	
+2025-11-12T03:03:30.419Z	> rest-express@1.0.0 build
+2025-11-12T03:03:30.419Z	> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+2025-11-12T03:03:30.419Z	
+2025-11-12T03:03:31.527Z	vite v5.4.20 building for production...
+2025-11-12T03:03:31.597Z	transforming...
+2025-11-12T03:03:33.063Z	
+2025-11-12T03:03:33.064Z	A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+2025-11-12T03:03:36.314Z	✓ 1971 modules transformed.
+2025-11-12T03:03:36.772Z	rendering chunks...
+2025-11-12T03:03:36.794Z	computing gzip size...
+2025-11-12T03:03:36.823Z	../dist/public/index.html                   2.59 kB │ gzip:  0.95 kB
+2025-11-12T03:03:36.824Z	../dist/public/assets/index-kKxK7kli.css   73.48 kB │ gzip: 11.83 kB
+2025-11-12T03:03:36.824Z	../dist/public/assets/index-C1-cFiaB.js   305.03 kB │ gzip: 97.43 kB
+2025-11-12T03:03:36.825Z	✓ built in 5.27s
+2025-11-12T03:03:36.910Z	
+2025-11-12T03:03:36.911Z	  dist/index.js  7.8kb
+2025-11-12T03:03:36.911Z	
+2025-11-12T03:03:36.912Z	⚡ Done in 10ms
+2025-11-12T03:03:36.926Z	Success: Build command completed
+2025-11-12T03:03:37.190Z	Executing user deploy command: npx wrangler deploy
+2025-11-12T03:03:39.346Z	
+2025-11-12T03:03:39.348Z	 ⛅️ wrangler 4.47.0
+2025-11-12T03:03:39.350Z	───────────────────
+2025-11-12T03:03:39.346Z	
+2025-11-12T03:03:39.348Z	 ⛅️ wrangler 4.47.0
+2025-11-12T03:03:39.350Z	───────────────────
+2025-11-12T03:03:49.607Z	▲ [WARNING] Failed to match Worker name. Your config file is using the Worker name "n8n-dashboard", but the CI system expected "interview1". Overriding using the CI provided Worker name. Workers Builds connected builds will attempt to open a pull request to resolve this config name mismatch.
+2025-11-12T03:03:49.607Z	
+2025-11-12T03:03:49.607Z	
+2025-11-12T03:03:52.215Z	🌀 Created namespace for Workers Site "__interview1-workers_sites_assets"
+2025-11-12T03:03:52.215Z	Fetching list of already uploaded assets...
+2025-11-12T03:03:52.526Z	Building list of assets to upload...
+2025-11-12T03:03:52.531Z	 + assets/index-C1-cFiaB.601fafa784.js (uploading new version of assets/index-C1-cFiaB.js)
+2025-11-12T03:03:52.532Z	 + assets/index-kKxK7kli.d3c7c7fd2e.css (uploading new version of assets/index-kKxK7kli.css)
+2025-11-12T03:03:52.533Z	 + favicon.b61c07068c.png (uploading new version of favicon.png)
+2025-11-12T03:03:52.534Z	 + index.0e353a1aae.html (uploading new version of index.html)
+2025-11-12T03:03:52.537Z	Uploading 4 new assets...
+2025-11-12T03:03:54.040Z	Uploaded 100% [4 out of 4]
+2025-11-12T03:03:54.040Z	↗️  Done syncing assets
+2025-11-12T03:03:54.044Z	Total Upload: 128.83 KiB / gzip: 21.75 KiB
+2025-11-12T03:03:54.040Z	Uploaded 100% [4 out of 4]
+2025-11-12T03:03:54.040Z	↗️  Done syncing assets
+2025-11-12T03:03:54.044Z	Total Upload: 128.83 KiB / gzip: 21.75 KiB
+2025-11-12T03:03:54.986Z	Your Worker has access to the following bindings:
+2025-11-12T03:03:54.987Z	Binding                                     Resource            
+2025-11-12T03:03:54.987Z	env.WORKFLOW_STORAGE (WorkflowStorage)      Durable Object      
+2025-11-12T03:03:54.987Z	
+2025-11-12T03:03:54.989Z	
+2025-11-12T03:03:54.990Z	✘ [ERROR] A request to the Cloudflare API (/accounts/fe92eeff181662396aefb25fc1d81fdf/workers/scripts/interview1) failed.
+2025-11-12T03:03:54.990Z	
+2025-11-12T03:03:54.990Z	  In order to use Durable Objects with a free plan, you must create a namespace using a `new_sqlite_classes` migration. [code: 10097]
+2025-11-12T03:03:54.991Z	  
+2025-11-12T03:03:54.991Z	  If you think this is a bug, please open an issue at: https://github.com/cloudflare/workers-sdk/issues/new/choose
+2025-11-12T03:03:54.991Z	
+2025-11-12T03:03:54.991Z	
+2025-11-12T03:03:54.991Z	
+2025-11-12T03:03:54.991Z	Cloudflare collects anonymous telemetry about your usage of Wrangler. Learn more at https://github.com/cloudflare/workers-sdk/tree/main/packages/wrangler/telemetry.md
+2025-11-12T03:03:55.022Z	🪵  Logs were written to "/opt/buildhome/.config/.wrangler/logs/wrangler-2025-11-12_03-03-38_224.log"
+2025-11-12T03:04:01.050Z	Failed: error occurred while running deploy command
