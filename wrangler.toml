@@ -5,8 +5,7 @@ compatibility_date = "2024-11-12"
 # Enables free workers.dev subdomain (https://n8n-dashboard.<your-subdomain>.workers.dev)
 workers_dev = true
 
-# OPTIONAL: For custom domain, uncomment and update:
-# route = { pattern = "yourdomain.com/*", zone_name = "yourdomain.com" }
+route = { pattern = "test2.smartbytesolutions.co.nz/*", zone_name = "smartbytesolutions.co.nz" }
 
 [[durable_objects.bindings]]
 name = "WORKFLOW_STORAGE"
