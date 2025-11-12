@@ -21,12 +21,10 @@ interface WorkflowOutput {
 }
 
 export class WorkflowStorage extends DurableObject {
-  private sessions: Set<WebSocket>;
   private outputs: WorkflowOutput[];
 
   constructor(state: DurableObjectState, env: Env) {
     super(state, env);
-    this.sessions = new Set();
     this.outputs = [];
     
     this.ctx.blockConcurrencyWhile(async () => {
@@ -64,12 +62,8 @@ export class WorkflowStorage extends DurableObject {
     const pair = new WebSocketPair();
     const [client, server] = Object.values(pair);
 
+    // Accept WebSocket using hibernation API - this keeps connections alive automatically
     this.ctx.acceptWebSocket(server);
-    this.sessions.add(server);
-
-    server.addEventListener("close", () => {
-      this.sessions.delete(server);
-    });
 
     return new Response(null, {
       status: 101,
@@ -131,20 +125,40 @@ export class WorkflowStorage extends DurableObject {
 
   private broadcast(message: any): void {
     const messageStr = JSON.stringify(message);
-    this.sessions.forEach((session) => {
+    // Get all active WebSocket connections from the hibernation API
+    const sockets = this.ctx.getWebSockets();
+    sockets.forEach((socket) => {
       try {
-        session.send(messageStr);
+        if (socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.READY_STATE_OPEN) {
+          socket.send(messageStr);
+        }
       } catch (err) {
-        this.sessions.delete(session);
+        console.error("Failed to send message to WebSocket:", err);
       }
     });
   }
 
   async webSocketMessage(ws: WebSocket, message: string | ArrayBuffer): Promise<void> {
     // Handle incoming WebSocket messages if needed
+    // Client might send ping messages, we can respond with pong or just ignore
+    try {
+      if (typeof message === 'string') {
+        const data = JSON.parse(message);
+        if (data.type === 'ping') {
+          // Client is keeping connection alive, no response needed
+        }
+      }
+    } catch (e) {
+      // Ignore parsing errors
+    }
   }
 
   async webSocketClose(ws: WebSocket, code: number, reason: string, wasClean: boolean): Promise<void> {
-    this.sessions.delete(ws);
+    // WebSocket closed - Cloudflare handles cleanup automatically
+    console.log(`WebSocket closed: code=${code}, reason=${reason}, wasClean=${wasClean}`);
+  }
+
+  async webSocketError(ws: WebSocket, error: unknown): Promise<void> {
+    console.error("WebSocket error:", error);
   }
 }

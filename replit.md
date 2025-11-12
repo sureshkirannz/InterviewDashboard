@@ -129,6 +129,13 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+**November 12, 2025 - WebSocket Keep-Alive Fix**
+- ✅ Added client-side heartbeat (ping every 25 seconds) to prevent WebSocket timeout on both Replit and Cloudflare
+- ✅ Added server-side ping/pong handling for Replit Express server (ping every 30 seconds)
+- ✅ Updated Cloudflare Durable Object to use WebSocket Hibernation API best practices
+- ✅ Fixed issue where dashboard wouldn't show new n8n POST data unless page was refreshed
+- ✅ WebSocket connections now stay alive indefinitely with automatic reconnection
+
 **November 12, 2025 - Cloudflare Workers Deployment Fixed**
 - ✅ Fixed Workers Sites static asset serving by migrating from `env.ASSETS` to `@cloudflare/kv-asset-handler`
 - ✅ Properly configured `__STATIC_CONTENT` KV namespace binding for Workers Sites
