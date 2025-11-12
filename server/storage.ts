@@ -20,6 +20,7 @@ export class MemStorage implements IStorage {
     const output: WorkflowOutput = {
       ...insertOutput,
       id,
+      executionId: insertOutput.executionId || `exec-${Date.now()}`,
       timestamp: insertOutput.timestamp || new Date(),
     };
     
